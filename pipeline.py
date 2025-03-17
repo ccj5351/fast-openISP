@@ -213,7 +213,7 @@ def ycbcr_to_rgb(ycbcr_array):
     bias = np.array([-56992, 34784, -70688], dtype=np.int32).reshape(1, 1, 3)  # x256
 
     ycbcr_array = ycbcr_array.astype(np.int32)
-    rgb_array = np.right_shift(ycbcr_array @ matrix + bias, 8)
+    rgb_array = np.right_shift(ycbcr_array @ matrix + bias, 8) # i.e., dividing the number by 2**8;
     rgb_array = np.clip(rgb_array, 0, 255)
 
     return rgb_array.astype(np.uint8)
